@@ -26,8 +26,14 @@ export default class login extends Component {
         })
         .then( res => res.json())
         .then( res => {
-            alert(res.message)
             console.log(res)
+            if(res.message == 'successful'){
+                this.setState({redirect: true})
+            }
+            else{
+                alert(res.message)
+            }
+
         })
         .catch(err => console.log(err.message))
     }

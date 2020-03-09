@@ -5,7 +5,8 @@ import Register from './components/pages/register/register'
 import Index from './components/pages/home/index'
 import Dashboard from './components/pages/dashboard/dashboard'
 // mustard ft richy rodd - ballin
-
+import './components/css/home.css'
+import './components/css/reg.css'
 export default class router extends Component {
     render() {
         return (
