@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import axios from 'axios'
 export default class register extends Component {
     constructor() {
         super()
@@ -16,6 +16,11 @@ export default class register extends Component {
 
     async handleRegister(e) {
         e.preventDefault()
+        // await axios.post('http://localhost:5000/register', this.state)
+        // .then( res => {
+        //     alert(res.data.message)
+        // })
+        // .catch( err => console.log(err.message))
         fetch('http://localhost:5000/register', {
             method: "POST",
             headers: {
@@ -34,6 +39,9 @@ export default class register extends Component {
         })
         .then( res => res.json())
         .then( res => {
+            if(res.message === "Registration was successful") {
+                this.props.history.push('/login')
+            }
             alert(res.message)
             console.log(res)
         })
@@ -59,7 +67,7 @@ export default class register extends Component {
         this.setState({ password: e.target.value })
     }
     handleName(e) {
-        this.setState({ name: e.target.valuee })
+        this.setState({ name: e.target.value })
     }
     render() {
         return (
@@ -70,62 +78,33 @@ export default class register extends Component {
                             <h2 class="text-center font-bold pt-4 pb-5 mb-5"><strong>Patient Registration form</strong></h2>
                             <h4 style={{textAlign:'center'}}> {this.state.response}</h4>
                             <hr/>
-                            <form id="contact-form" method="POST">
-                        
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="md-form mb-0">
-                                                    <input type="text" id="name" name="name" class="form-control" value={this.state.name} onChange={this.handleName.bind(this)}/>
-                                                    <label for="name" class="">Name</label>
-                                                </div>
+                            <form>
+                                    <div class="md-form">
+                                        <input type="text" id="Form-email4" class="form-control" value={this.state.email} onChange={this.handleEmail.bind(this)}/>
+                                        <label for="Form-email4"> <i class="fa fa-mail ml-1"></i> Email</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <input type="text" id="Form-email4" class="form-control" value={this.state.name} onChange={this.handleName.bind(this)}/>
+                                        <label for="Form-email4"> <i class="fa fa-mail ml-1"></i> Name</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <input type="text" id="Form-email4" class="form-control" value={this.state.phone} onChange={this.handlePhone.bind(this)}/>
+                                        <label for="Form-email4"> <i class="fa fa-mail ml-1"></i> Phone</label>
+                                    </div>
+                                    <div class="md-form pb-3">
+                                                <input type="password" id="Form-pass4" class="form-control" value={this.state.password} onChange={this.handlePassword.bind(this)}/>
+                                                <label for="Form-pass4">Password</label>
+                                                
                                             </div>
-                        
-                                        </div>
-                                        <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="md-form mb-0">
-                                                        <input type="email" id="email" name="email" class="form-control" value={this.state.email}onChange={this.handleEmail.bind(this)}/>
-                                                        <label for="subject" class="">Email address <i class="fa fa-message ml-1"></i></label>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-md-4">
-                                                    <div class="md-form mb-0">
-                                                        <input type="text" id="name" name="name" class="form-control" value={this.state.address} onChange={this.handleAddress.bind(this)}/>
-                                                        <label for="subject" class="">Home Address</label>
-                                                    </div>
-                                                </div>
-                                                
-                                        </div>
-                                        <div class="row">
-                                                <div class="col-md-4">
-                                                        <div class="md-form mb-0">
-                                                            <input type="text" id="subject" name="subject" class="form-control" value={this.state.gender} onChange={this.handleGender.bind(this)}/>
-                                                            <label class="">Gender</label>
-                                                        </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                        <div class="md-form mb-0">
-                                                            <input type="text" id="phone" name="phone" class="form-control" value={this.state.phone} onChange={this.handlePhone.bind(this)}/>
-                                                            <label class="">Phone Number</label>
-                                                        </div>
-                                                </div>
-                                    
-                                        </div>
-                                        <div class="row">
-                                                
-                                                <div class="col-md-4">
-                                                        <div class="md-form mb-0">
-                                                            <input type="text" id="marital" name="" class="form-control" value={this.state.marital} onChange={this.handleMarital.bind(this)}/>
-                                                            <label class="">Marital Status</label>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                        <div class="text-center text-md-left">
-                                            <button class="btn btn-primary" onClick={this.handleRegister.bind(this)}>signup <i class="fa fa-sign-in ml-1"></i></button>
-                                        </div>
-                                    </form>
-                        
+                                    <div class="text-center mb-4">
+                                                <button type="button" class="btn btn-danger btn-block z-depth-2" onClick={this.handleRegister.bind(this)}>SignUp <i class="fa fa-sign-in ml-1"></i></button>
+                                    </div>
+                                    <hr/> 
+                                            {/* <p class="font-small grey-text d-flex justify-content-center">Don't have an account? <Link to='/register' style={{color:'rgb(97, 5, 5)'}}> Sign up</Link></p> */}
+                                </form>
+                            
                         
                         </div>
                     </div>

@@ -1,5 +1,7 @@
 body{
-    background: whitesmoke
+    background: whitesmoke;
+    /* font-family: 'Baloo Paaji 2', cursive; */
+    font-family: 'Roboto', sans-serif;
 }
 #auth{
     float:right;

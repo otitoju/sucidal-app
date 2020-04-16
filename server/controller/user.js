@@ -2,17 +2,22 @@ const UserService = require('../service/userService')
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
 const Model = require('../models/user')
+const bcrypt = require('bcryptjs')
+
 class UserController {
     static async reqisterUser(req, res) {
         try {
-            const { name, email } = req.body
-            if(!name || !email) {
+            const { name, email, password, phone } = req.body
+            if(!name || !email || !password || !phone) {
                 return res.status(400).json({
                     message: 'Please fill in empty fields'
                 })
             }
             else {
-                const info = await UserService.registerUser(req.body)
+                const hash = bcrypt.hashSync(password, 10)
+                const info = await Model.create(req.body)
+                info.password = hash
+                await info.save()
                 return res.status(201).json({
                     message: 'Registration was successful',
                     info: info

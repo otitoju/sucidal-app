@@ -146,7 +146,7 @@ export default class dashboard extends Component {
             )
         }
         else {
-            <Redirect to="/login" />
+            return <Redirect to="/login" />
         }
         
     }

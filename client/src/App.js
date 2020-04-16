@@ -1,8 +1,8 @@
 import React from 'react';
 import Router from './router'
 import { Route } from 'react-router-dom'
-import Header from './coomponents/layouts/header'
-import Footer from './coomponents/layouts/footer'
+import Header from './components/layouts/header'
+import Footer from './components/layouts/footer'
 
 function App() {
   return (

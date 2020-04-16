@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 export default class login extends Component {
     constructor() {
@@ -63,15 +63,15 @@ export default class login extends Component {
                                         <label for="Form-email4"> <i class="fa fa-mail ml-1"></i> Email</label>
                                     </div>
                                     <div class="md-form pb-3">
-                                                <input type="password" id="Form-pass4" class="form-control" value={this.state.password}onChange={this.handlePassword.bind(this)}/>
+                                                <input type="password" id="Form-pass4" class="form-control" value={this.state.password} onChange={this.handlePassword.bind(this)}/>
                                                 <label for="Form-pass4">Password</label>
                                                 <p class="font-small grey-text d-flex justify-content-end">Forgot <a href="#" class="dark-grey-text font-weight-bold ml-1"> Password?</a></p>
                                             </div>
                                     <div class="text-center mb-4">
-                                                <button type="button" class="btn btn-danger btn-block z-depth-2" onClick={this.state.handleLogin.bind(this)}>Log in <i class="fa fa-sign-in ml-1"></i></button>
+                                                <button type="button" class="btn btn-danger btn-block z-depth-2" onClick={this.handleLogin.bind(this)}>Log in <i class="fa fa-sign-in ml-1"></i></button>
                                     </div>
                                     <hr/> 
-                                            <p class="font-small grey-text d-flex justify-content-center">Don't have an account? <Link to='/signup' style={{color:'rgb(97, 5, 5)'}}> Sign up</Link></p>
+                                            <p class="font-small grey-text d-flex justify-content-center">Don't have an account? <Link to='/register' style={{color:'rgb(97, 5, 5)'}}> Sign up</Link></p>
                                 </form>
                                 <hr/>
                                 </div>
@@ -83,7 +83,7 @@ export default class login extends Component {
             )
         }
         else {
-            <Redirect to="/dashboard" />
+            return <Redirect to="/dashboard" />
         }
     }
 }

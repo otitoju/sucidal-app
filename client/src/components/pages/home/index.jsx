@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import logo1 from '../images/Medical-Device.jpg'
-import logo2 from '../images/seth.jpg'
-import logo3 from '../images/medical-negligence.jpg'
+import logo1 from '../../images/Medical-Device.jpg'
+import logo2 from '../../images/seth.jpg'
+import logo3 from '../../images/medical-negligence.jpg'
 
 export default class Index extends Component {
   render() {
