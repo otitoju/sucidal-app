@@ -20,7 +20,8 @@ export default class dashboard extends Component {
             income: '', 
             pay4sex: '', 
             relationship: '', 
-            stigma: ''
+            stigma: '',
+            result:''
         }
     }
     async componentDidMount() {
@@ -31,7 +32,7 @@ export default class dashboard extends Component {
     }
 
     handleVerify(e) {
-        e.preventDefault()
+        //e.preventDefault()
         fetch('http://localhost:5000/prediction', {
             method: "POST",
             headers: {
@@ -52,7 +53,8 @@ export default class dashboard extends Component {
         .then( res => res.json())
         .then( res => {
             console.log(res)
-            alert(res.message)
+            this.setState({result: res.message})
+           // alert(res.message)
         })
         .catch(err => console.log(err.message))
     }
@@ -65,7 +67,35 @@ export default class dashboard extends Component {
     handlePay4sex(e) { this.setState({ pay4sex: e.target.value })}
     handleRelationship(e) { this.setState({ relationship: e.target.value })}
     handleStigma(e) { this.setState({ stigma: e.target.value })}
+    
 
+    Modal() {
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+    
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+    
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+    
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+    
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        this.handleVerify()
+    }
     render() {
         if(!this.state.redirect) {
             return (
@@ -135,7 +165,16 @@ export default class dashboard extends Component {
                 </select>
             <hr/>
             <div class="text-center">
-            <button class="btn btn-danger btn-block my-4" type="submit" onClick={this.handleVerify.bind(this)}>Result </button>
+            <button id="myBtn" class="btn btn-danger btn-block my-4" onClick={this.Modal.bind(this)}>Result</button>
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h1>Your test result is...</h1>
+                    <h3>{this.state.result}</h3>
+                </div>
+            </div>
+            {/* <button class="btn btn-danger btn-block my-4" type="submit" onClick={this.handleVerify.bind(this)}>Result </button> */}
             </div>
             </div>
           </div>
