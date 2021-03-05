@@ -28,6 +28,11 @@ export default class login extends Component {
         .then( res => {
             console.log(res)
             if(res.message == 'successful'){
+                // SULE COPY THIS
+                window.localStorage.setItem('name', res.name)
+                window.localStorage.setItem('email', res.email)
+                window.localStorage.setItem('id', res.id)
+                // stop here 
                 this.setState({redirect: true})
             }
             else{

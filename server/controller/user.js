@@ -47,12 +47,20 @@ class UserController {
                     }
                     else{
                         const token = await jwt.sign({id:info.id, name:info.name, email:info.email}, process.env.USER_SECRET, {expiresIn:'24h'})
+                        ///   SULE COPY THIS
+                        let name = info.name
+                        let email = info.email
+                        let id = info._id
                 
                         return res.status(200).json({
                             message:`successful`,
-                            token:token
+                            token:token,
+                            name: name,
+                            email: email,
+                            id: id
                             
                         })
+                        /// END HERE
                     }
                 }
             

@@ -21,11 +21,19 @@ export default class dashboard extends Component {
             pay4sex: '', 
             relationship: '', 
             stigma: '',
-            result:''
+            result:'',
+            name: '',
+            email: '',
+            id: ''
         }
     }
     async componentDidMount() {
+        // SULE COPY THIS
         const token = await window.localStorage.getItem('token')
+        const name = await window.localStorage.getItem('name')
+        const email = await window.localStorage.getItem('email')
+        const id = await window.localStorage.getItem('id')
+        this.setState({name: name, email: email, id: id })
         if(!token) {
             this.setState({ redirect: true })
         }
@@ -170,7 +178,7 @@ export default class dashboard extends Component {
             <div id="myModal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <h1>Your test result is...</h1>
+            <h1>Dear {this.state.name} with id {this.state.id} and email: {this.state.email}, your test result is...</h1>
                     <h3>{this.state.result}</h3>
                 </div>
             </div>
